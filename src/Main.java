@@ -24,5 +24,10 @@ public class Main {
 
         GeometricFigure hexagon = new Hexagon(6);
         System.out.println(hexagon.calculateArea());
+
+        // Task4
+
+        Square square = new Square(5,5);
+        System.out.println(square.calculateDiameter(5));
     }
 }
