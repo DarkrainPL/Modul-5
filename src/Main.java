@@ -55,11 +55,11 @@ public class Main {
         System.out.println("");
         System.out.println("Task 6");
 
-        if (task6.invertFile("files/ala.txt")) {
-            System.out.println("The operation of adding text to file was successful!");
+        if (task6.invertFile("files/ala 3.txt")) {
+            System.out.println("The operation of adding text from file ala 3.txt was successful! Inverted file task6file.txt was created!");
             System.out.println("");
         } else {
-            System.out.println("The operation of adding text to file was unsuccessful!");
+            System.out.println("The operation was unsuccessful!");
             System.out.println("");
         }
 
