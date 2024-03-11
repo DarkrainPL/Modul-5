@@ -49,8 +49,8 @@ public class FileOperationTasks {
                         bufferedWriter.newLine();
                     }
                 }
-                    bufferedWriter.flush();
-                    return true;
+                bufferedWriter.flush();
+                return true;
 
 
             } catch (IOException ioException) {
@@ -125,29 +125,22 @@ public class FileOperationTasks {
     }
 
     public boolean invertFile(String filePath) {
+
         String text;
         File file = new File(filePath);
+        StringBuilder builder = new StringBuilder();
+
         if (file.exists()) {
 
-            StringBuilder builder = new StringBuilder();
+
             try (FileReader reader = new FileReader(file);
                  BufferedReader bufferedReader = new BufferedReader(reader)) {
+
                 text = bufferedReader.readLine();
                 while (text != null) {
                     builder.append(text + " ");
                     text = bufferedReader.readLine();
                 }
-                System.out.println("In file " + filePath + " there is this text:");
-                System.out.println(builder);
-
-                String invertedBuilder = builder.toString();
-                String[] stringToArray = invertedBuilder.split("\\s+");
-
-                System.out.println("");
-                System.out.println("File words inverted:");
-                System.out.println(invertedBuilder);
-
-
             } catch (IOException ioException) {
                 ioException.printStackTrace();
                 return false;
@@ -156,7 +149,25 @@ public class FileOperationTasks {
             System.out.println("File doesn't exist!");
             return false;
         }
-       return true;
+
+        String[] stringToArray = builder.toString().split("\\s+");
+        File newFileName = new File("files/task6file.txt");
+
+        try (FileWriter writer = new FileWriter(newFileName);
+             BufferedWriter bufferedWriter = new BufferedWriter(writer)) {
+
+            newFileName.createNewFile();
+
+            for (int i = 0; i < stringToArray.length; i++) {
+
+                bufferedWriter.write(stringToArray[stringToArray.length - i - 1] + " ");
+            }
+            bufferedWriter.flush();
+            return true;
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+            return false;
+        }
     }
 
 }
