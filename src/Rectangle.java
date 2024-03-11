@@ -2,7 +2,7 @@ import org.w3c.dom.ls.LSOutput;
 
 public class Rectangle implements GeometricFigure {
 
-    int sideA;
+    int sideA; // prywatne pola
     int sideB;
 
     public Rectangle(int sideA, int sideB) {
