@@ -1,0 +1,3 @@
+to jest przykład jak
+zapisywać po 4 w
+linii w pliku 

@@ -33,93 +33,130 @@ public class FileOperationTasks {
         } else {
             System.out.println("Tell me the text you want to save in file:");
             String textToSave = sc.nextLine();
+            String[] stringToArray = textToSave.split("\\s+");
+
             try (FileWriter writer = new FileWriter(file);
                  BufferedWriter bufferedWriter = new BufferedWriter(writer)) {
-                file.createNewFile();
-                String[] stringToArray = textToSave.split("\\s+");
-                for (int i = 0; i <= stringToArray.length; i++) {
 
-                    if ((i = 1) % 4 != 0) {
+                file.createNewFile();
+
+                for (int i = 0; i < stringToArray.length; i++) {
+
+                    if ((i + 1) % 4 != 0) {
                         bufferedWriter.write(stringToArray[i] + " ");
                     } else {
                         bufferedWriter.write(stringToArray[i]);
                         bufferedWriter.newLine();
                     }
-
+                }
                     bufferedWriter.flush();
                     return true;
 
-                }
+
             } catch (IOException ioException) {
                 ioException.printStackTrace();
                 return false;
             }
         }
-        return false;
     }
-        public void readFromFile (String fileName){ // string.split, StringBuilder, 4 slowa znak nowej linii
 
-            String text;
-            File file = new File(fileName);
-            if (file.exists()) {
-                StringBuilder builder = new StringBuilder();
-                try (FileReader reader = new FileReader(file);
-                     BufferedReader bufferedReader = new BufferedReader(reader)) {
+    public void readFromFile(String fileName) {
+
+        String text;
+        File file = new File(fileName);
+        if (file.exists()) {
+            StringBuilder builder = new StringBuilder();
+            try (FileReader reader = new FileReader(file);
+                 BufferedReader bufferedReader = new BufferedReader(reader)) {
+                text = bufferedReader.readLine();
+                while (text != null) {
+                    builder.append(text + " ");
                     text = bufferedReader.readLine();
-                    while (text != null) {
-                        builder.append(text + " ");
-                        text = bufferedReader.readLine();
-                    }
-                    System.out.println("In file " + fileName + " there is this text:");
-                    System.out.println(builder);
-                } catch (IOException ioException) {
-                    ioException.printStackTrace();
-
                 }
-            } else {
-                System.out.println("File doesn't exist!");
+                System.out.println("In file " + fileName + " there is this text:");
+                System.out.println(builder);
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+
             }
-        }
-
-        public void checkIfTwoFilesHaveSameContent (String fileName1, String fileName2){
-
-            String text1;
-            String text2;
-            File file1 = new File(fileName1);
-            File file2 = new File(fileName2);
-            if (file1.exists() && file2.exists()) {
-
-                try (FileReader reader1 = new FileReader(file1);
-                     BufferedReader bufferedReader1 = new BufferedReader(reader1);
-                     FileReader reader2 = new FileReader(file2);
-                     BufferedReader bufferedReader2 = new BufferedReader(reader2)) {
-
-                    text1 = bufferedReader1.readLine();
-                    text2 = bufferedReader2.readLine();
-                    boolean answer = true;
-
-                    while (text1 != null && text2 != null) {
-                        if (text1.equals(text2)) {
-                            answer = true;
-                            text1 = bufferedReader1.readLine();
-                            text2 = bufferedReader2.readLine();
-                        } else {
-                            answer = false;
-                            text1 = bufferedReader1.readLine();
-                            text2 = bufferedReader2.readLine();
-                        }
-                    }
-                    if (answer == true) {
-                        System.out.println("These files have the same content!");
-                    } else {
-                        System.out.println("These files have different content!");
-                    }
-                } catch (IOException ioException) {
-                    ioException.printStackTrace();
-
-                }
-            } else {
-                System.out.println("File doesn't exist!");
-            }
+        } else {
+            System.out.println("File doesn't exist!");
         }
     }
+
+    public boolean areTextFilesEqual(String filePath1, String filePath2) {
+
+        String text1;
+        String text2;
+        boolean answer = true;
+        File file1 = new File(filePath1);
+        File file2 = new File(filePath2);
+        if (file1.exists() && file2.exists()) {
+
+            try (FileReader reader1 = new FileReader(file1);
+                 BufferedReader bufferedReader1 = new BufferedReader(reader1);
+                 FileReader reader2 = new FileReader(file2);
+                 BufferedReader bufferedReader2 = new BufferedReader(reader2)) {
+
+                text1 = bufferedReader1.readLine();
+                text2 = bufferedReader2.readLine();
+
+
+                while (text1 != null && text2 != null) {
+                    if (text1.equals(text2)) {
+                        answer = true;
+                        text1 = bufferedReader1.readLine();
+                        text2 = bufferedReader2.readLine();
+                    } else {
+                        answer = false;
+                        text1 = bufferedReader1.readLine();
+                        text2 = bufferedReader2.readLine();
+                    }
+                }
+
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+
+            }
+        } else {
+            System.out.println("File doesn't exist!");
+        }
+        return answer;
+    }
+
+    public boolean invertFile(String filePath) {
+        String text;
+        File file = new File(filePath);
+        if (file.exists()) {
+
+            StringBuilder builder = new StringBuilder();
+            try (FileReader reader = new FileReader(file);
+                 BufferedReader bufferedReader = new BufferedReader(reader)) {
+                text = bufferedReader.readLine();
+                while (text != null) {
+                    builder.append(text + " ");
+                    text = bufferedReader.readLine();
+                }
+                System.out.println("In file " + filePath + " there is this text:");
+                System.out.println(builder);
+
+                String invertedBuilder = builder.toString();
+                String[] stringToArray = invertedBuilder.split("\\s+");
+
+                System.out.println("");
+                System.out.println("File words inverted:");
+                System.out.println(invertedBuilder);
+
+
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+                return false;
+            }
+        } else {
+            System.out.println("File doesn't exist!");
+            return false;
+        }
+       return true;
+    }
+
+}

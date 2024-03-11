@@ -1,11 +1,11 @@
 public class Square extends Rectangle {
 
 
-    public Square(int sideA) { // jak to tu zmienic??
+    public Square(double sideA) { // jak to tu zmienic??
         super(sideA, sideA );
     }
 
-    public int calculateDiameter(int sideA) {
+    public double calculateDiameter(double sideA) {
             return 4 * sideA;
     }
 }

@@ -1,14 +1,14 @@
 public class Triangle implements GeometricFigure {
 
-    int base;
-    int height;
+    private double base;
+    private double height;
 
-    public Triangle(int base, int height) {
+    public Triangle(double base, double height) {
         this.base = base;
         this.height = height;
     }
     @Override
-    public int calculateArea() {
-        return (int) (0.5*base*height);
+    public double calculateArea() {
+        return (0.5*base*height);
     }
 }

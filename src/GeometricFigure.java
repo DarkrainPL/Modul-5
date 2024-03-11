@@ -1,4 +1,4 @@
 public interface GeometricFigure {
 
-    public int calculateArea();
+    public double calculateArea();
 }

@@ -1,17 +1,17 @@
-import org.w3c.dom.ls.LSOutput;
+
 
 public class Rectangle implements GeometricFigure {
 
-    int sideA; // prywatne pola
-    int sideB;
+    private double sideA;
+    private double sideB;
 
-    public Rectangle(int sideA, int sideB) {
+    public Rectangle(double sideA, double sideB) {
         this.sideA = sideA;
         this.sideB = sideB;
     }
 
     @Override
-    public int calculateArea() {
+    public double calculateArea() {
         return sideA * sideB;
     }
 }

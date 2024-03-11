@@ -1,13 +1,13 @@
 public class Hexagon implements GeometricFigure {
 
-    int side;
+    private double side;
 
-    public Hexagon(int side) {
+    public Hexagon(double side) {
         this.side = side;
     }
 
     @Override
-    public int calculateArea() {
-        return (int) (3 * (Math.sqrt(3) * Math.pow(side, 2)))/2; // tu powinien byc double w trojkacie z reszta tez nie?
+    public double calculateArea() {
+        return (3 * (Math.sqrt(3) * Math.pow(side, 2))) / 2;
     }
 }
