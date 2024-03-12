@@ -1,6 +1,4 @@
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.Scanner;
 
 public class FileOperationTasks {
@@ -60,7 +58,7 @@ public class FileOperationTasks {
         }
     }
 
-    public void readFromFile(String fileName) {
+    public boolean readFromFile(String fileName) {
 
         String text;
         File file = new File(fileName);
@@ -81,7 +79,9 @@ public class FileOperationTasks {
             }
         } else {
             System.out.println("File doesn't exist!");
+            return false;
         }
+        return false;
     }
 
     public boolean areTextFilesEqual(String filePath1, String filePath2) {

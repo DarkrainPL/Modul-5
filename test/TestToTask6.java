@@ -10,6 +10,18 @@ public class TestToTask6 {
 
         FileOperationTasks task6 = new FileOperationTasks();
         Assertions.assertTrue(task6.areTextFilesEqual("files/task6file.txt", "test/testToTask6file.txt"));
+    }
 
+    @Test
+    void fileDoNotExist() {
+
+        FileOperationTasks task6 = new FileOperationTasks();
+        Assertions.assertFalse(task6.readFromFile("files/task66file.txt"));
+    }
+
+    @Test
+    void filesDoNotMatch() {
+        FileOperationTasks task6 = new FileOperationTasks();
+        Assertions.assertFalse(task6.areTextFilesEqual("files/ala.txt", "test/testToTask6file.txt"));
     }
 }
