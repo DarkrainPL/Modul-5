@@ -54,8 +54,9 @@ public class Main {
         FileOperationTasks task6 = new FileOperationTasks();
         System.out.println("");
         System.out.println("Task 6");
-
-        if (task6.invertFile("files/ala 3.txt")) {
+        String fileName = "ala 3.txt";
+        String directory = "files/";
+        if (task6.invertFile(directory,fileName)) {
             System.out.println("The operation of adding text from file ala 3.txt was successful! Inverted file task6file.txt was created!");
             System.out.println("");
         } else {

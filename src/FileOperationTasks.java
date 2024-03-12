@@ -108,9 +108,7 @@ public class FileOperationTasks {
                         text1 = bufferedReader1.readLine();
                         text2 = bufferedReader2.readLine();
                     } else {
-                        answer = false;
-                        text1 = bufferedReader1.readLine();
-                        text2 = bufferedReader2.readLine();
+                        return false;
                     }
                 }
 
@@ -124,10 +122,10 @@ public class FileOperationTasks {
         return answer;
     }
 
-    public boolean invertFile(String filePath) {
+    public boolean invertFile(String directory, String fileName) {
 
         String text;
-        File file = new File(filePath);
+        File file = new File(directory, fileName);
         StringBuilder builder = new StringBuilder();
 
         if (file.exists()) {
@@ -151,7 +149,8 @@ public class FileOperationTasks {
         }
 
         String[] stringToArray = builder.toString().split("\\s+");
-        File newFileName = new File("files/task6file.txt");
+        String newFilePath = directory+"Inverted."+fileName;
+        File newFileName = new File(newFilePath);
 
         try (FileWriter writer = new FileWriter(newFileName);
              BufferedWriter bufferedWriter = new BufferedWriter(writer)) {
